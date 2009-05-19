@@ -12,14 +12,6 @@ set(:user) { application }
 set :use_sudo, false
 
 on :load do
-  # Multistage options
-  if exists?(:stage)
-    set :branch, stage
-    set :rails_env, stage
-  else
-    set :branch, "master"
-  end
-
   if exists?(:host)
     role(:app)                  { host }
     role(:web)                  { host }
