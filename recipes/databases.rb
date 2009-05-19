@@ -35,3 +35,7 @@ on :load do
     after  "deploy:migrations", "deploy:web:enable"
   end
 end
+
+# Note the dependency this code creates on mysqldump and bzip2
+depend :remote, :command, 'mysqldump'
+depend :remote, :command, 'bzip2'

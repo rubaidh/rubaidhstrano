@@ -20,3 +20,7 @@ namespace :deploy do
     run "touch #{File.join(current_path, "tmp","restart.txt")}"
   end
 end
+
+# Note that we depend on at least Passenger 2.2.2 (which was the first one to
+# support the 2.3 releases correctly?) in our deployment environment.
+depend :remote, :gem, :passenger, ">=2.2.2"
