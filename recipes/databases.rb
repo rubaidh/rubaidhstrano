@@ -6,10 +6,7 @@ namespace :db do
     there.
   DESC
   task :backup, :roles => :db, :only => { :primary => true } do
-    rake = fetch(:rake, 'rake')
-    rails_env = fetch(:rails_env, 'production')
-
-    run "cd #{latest_release}; #{rake} RAILS_ENV=#{rails_env} db:backup:dump"
+    rubaidh_run_rake "db:backup:dump"
   end
 
   desc <<-DESC
