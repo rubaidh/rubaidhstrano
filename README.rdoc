@@ -42,7 +42,12 @@ There are a few useful use cases for these tasks.
 In order to automatically back up the production database before a migration,
 insert the following into your capistrano recipe:
 
-    before "db:migrate", "db:backup"
+    set :backup_database_before_migrations, true
+
+This is done in the defaults anyway, so should be enabled by default, so if
+you want to disable it, you can do:
+
+    set :backup_database_before_migrations, false
 
 ==== Duplicating the production database to your local environment.
 

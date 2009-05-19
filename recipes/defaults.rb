@@ -19,6 +19,8 @@ on :load do
   end
 end
 
+set :backup_database_before_migrations, true
+
 # SSH options
 ssh_options[:forward_agent] = true
 ssh_options[:keys] = [

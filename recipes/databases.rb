@@ -24,3 +24,9 @@ namespace :db do
     get "#{current_path}/db/#{rails_env}-data.sql.bz2", "db/#{rails_env}-data.sql.bz2"
   end
 end
+
+on :load do
+  if fetch(:backup_database_before_migrations, false)
+    before "deploy:migrate", "db:backup"
+  end
+end
