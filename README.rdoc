@@ -67,6 +67,9 @@ line:
 
     set :deployment_strategy, :passenger
 
+Of course, the defaults already set this, so you probably don't need to worry
+about it. :-)
+
 == Thanks
 
 Some of the code has been borrowed from other sources. Hopefully I've
