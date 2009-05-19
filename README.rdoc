@@ -125,6 +125,31 @@ shared assets to your local environment.  You can achieve that with:
     cap production assets:download
     rake assets:backup:load
 
+=== Replication
+
+If you combine the two duplication tasks, you get a complete mechanism to
+replicate a deployment environment back to your local system. So the
+combination exists. To duplicate your production environment to your
+development environment, run the following:
+
+    cap production replicate
+
+A few things to be aware of, though:
+
+* This will nuke the data from your development environment, including the
+  database and anything stored in asset directories. Don't say I didn't warn
+  you!
+
+* It doesn't scale. If the data in your production database, along with its
+  assets is large, it ain't going to work well. I'm currently getting mildly
+  irritated with it on an application with a combined set of assets which is
+  only 50MB.
+
+* There may be security or data protection issues with duplicating your
+  production environment to your laptop. Please make sure that you are
+  complying with data protection laws and the stringent security practices of
+  your company.
+
 == Thanks
 
 Some of the code has been borrowed from other sources. The multistage
