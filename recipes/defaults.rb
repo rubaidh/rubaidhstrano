@@ -11,9 +11,13 @@ set :daemon_strategy, :passenger
 set(:user) { application }
 set :use_sudo, false
 
-role(:app)                  { host }
-role(:web)                  { host }
-role(:db, :primary => true) { host }
+on :load do
+  if exists?(:host)
+    role(:app)                  { host }
+    role(:web)                  { host }
+    role(:db, :primary => true) { host }
+  end
+end
 
 # SSH options
 ssh_options[:forward_agent] = true
