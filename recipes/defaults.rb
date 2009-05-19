@@ -12,11 +12,12 @@ set(:user) { application }
 set :use_sudo, false
 
 on :load do
-  if exists?(:host)
-    role(:app)                  { host }
-    role(:web)                  { host }
-    role(:db, :primary => true) { host }
-  end
+  role(:app)                  { host }
+  role(:web)                  { host }
+  role(:db, :primary => true) { host }
+
+  set(:branch) { fetch(:stage, 'master') }
+  set(:rails_env) { fetch(:stage, 'production') }
 end
 
 # A bunch of features provided by this plugin that I want to enable for most
