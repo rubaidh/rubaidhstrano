@@ -23,6 +23,7 @@ end
 # of our applications.
 set :backup_database_before_migrations, true
 set :disable_web_during_migrations,     true
+set :build_gems,                        true
 
 # SSH options
 ssh_options[:forward_agent] = true
