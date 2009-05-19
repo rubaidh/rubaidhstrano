@@ -9,7 +9,7 @@ namespace :db do
     rake = fetch(:rake, 'rake')
     rails_env = fetch(:rails_env, 'production')
 
-    run "cd #{current_path}; #{rake} RAILS_ENV=#{rails_env} db:backup:dump"
+    run "cd #{latest_release}; #{rake} RAILS_ENV=#{rails_env} db:backup:dump"
   end
 
   desc <<-DESC
@@ -21,7 +21,7 @@ namespace :db do
   task :download, :roles => :db, :only => { :primary => true } do
     backup
     rails_env = fetch(:rails_env, 'production')
-    get "#{current_path}/db/#{rails_env}-data.sql.bz2", "db/#{rails_env}-data.sql.bz2"
+    get "#{latest_release}/db/#{rails_env}-data.sql.bz2", "db/#{rails_env}-data.sql.bz2"
   end
 end
 
