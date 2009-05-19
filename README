@@ -10,6 +10,25 @@ rectify that by collecting all these recipes and support tasks together.
 
 There's a real mish-mash of stuff in here, so let's take it one at a time.
 
+=== Defaults
+
+We've supplied a bunch of sensible defaults to required options:
+
+* We use Git, GitHub, make heavy use of submodules and (almost) always name
+  our repository after the application name. That means we can guess a number
+  of things, which is nice.
+
+* We use Passenger for deployment, nobody needs to do any sudoing and, by
+  default everything runs on a single host.
+
+* Check for all the possible (default) ssh keys, and forward our ssh-agent to
+  the remote machine. This means you can clone the repository from GitHub
+  using your own SSH key instead of a shared deployment one.
+
+Of course, these defaults are supplied in such a way that they can easily be
+overridden if they don't suit a particular application; just replace their
+values.
+
 === Database backup and restore
 
 There is a mixture of Capistrano and Rake tasks to allow the database on the
