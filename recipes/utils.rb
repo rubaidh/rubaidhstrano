@@ -11,3 +11,14 @@ def rubaidh_run_rake(*tasks)
     run "cd #{latest_release}; #{rake} RAILS_ENV=#{rails_env} #{task}"
   end
 end
+
+# There are many tasks that can be considered a deployment.  If you're wanting
+# to run a hook after *any* deployment, you'll want to hook into each of them.
+# This helps you.
+def after_any_deployment(*tasks)
+  ["deploy", "deploy:cold", "deploy:migrations"].each do |deployment_task|
+    tasks.each do |task|
+      after deployment_task, task
+    end
+  end
+end
