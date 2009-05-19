@@ -29,4 +29,9 @@ on :load do
   if fetch(:backup_database_before_migrations, false)
     before "deploy:migrate", "db:backup"
   end
+
+  if fetch(:disable_web_during_migrations, false)
+    before "deploy:migrations", "deploy:web:disable"
+    after  "deploy:migrations", "deploy:web:enable"
+  end
 end
