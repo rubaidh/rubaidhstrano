@@ -117,6 +117,14 @@ shared as so:
 
 Each directory is relative to +RAILS_ROOT+.
 
+==== Duplicating production assets to your local environment
+
+If you want to, and have the bandwidth, you can duplicate the production
+shared assets to your local environment.  You can achieve that with:
+
+    cap production assets:download
+    rake assets:backup:load
+
 == Thanks
 
 Some of the code has been borrowed from other sources. The multistage

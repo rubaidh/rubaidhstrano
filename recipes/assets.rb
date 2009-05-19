@@ -20,6 +20,22 @@ namespace :assets do
       end
     end
   end
+
+  desc "Create a backup of all the shared assets"
+  task :backup, :roles => [ :app, :web ], :except => { :no_release => true } do
+    tar = fetch(:tar, "tar")
+    rails_env = fetch(:rails_env, "production")
+
+    run "cd #{shared_assets_path} && #{tar} cjf #{rails_env}-assets.tar.bz2 #{asset_directories}"
+  end
+
+  task :download, :roles => [ :app, :web ], :except => { :no_release => true } do
+    backup
+
+    rails_env = fetch(:rails_env, "production")
+
+    get "#{shared_assets_path}/#{rails_env}-assets.tar.bz2", "#{rails_env}-assets.tar.bz2"
+  end
 end
 
 after 'deploy:setup',           'assets:directories:create'
