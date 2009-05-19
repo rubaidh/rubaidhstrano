@@ -12,6 +12,17 @@ set(:user) { application }
 set :use_sudo, false
 
 on :load do
+  # Multistage options
+  if exists?(:stage)
+    set :branch, stage
+    set :rails_env, stage
+
+    stage_file = File.join(File.dirname(__FILE__), 'stages', stage)
+    load stage_file if File.exists(stage_file)
+  else
+    set :branch, "master"
+  end
+
   if exists?(:host)
     role(:app)                  { host }
     role(:web)                  { host }
