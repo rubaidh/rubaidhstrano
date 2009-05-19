@@ -55,7 +55,7 @@ You've got a problem in production that you suspect is down to data rather
 than anything else and you'd like to dump the production database to your
 local development environment for further testing. This can be achieved with:
 
-    cap production db:backup
+    cap production db:download
     rake db:backup:load
 
 Note: this example assumes that you're using multistage deployments for
