@@ -51,6 +51,6 @@ on :load do
       end
     end
 
-    on :start, "multistage:ensure", :except => stages + ['multistage:prepare']
+    on :start, "multistage:ensure", :except => stages
   end
 end
