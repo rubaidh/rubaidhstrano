@@ -75,7 +75,7 @@ line:
 Of course, the defaults already set this, so you probably don't need to worry
 about it. :-)
 
-=== Multistage deployments
+==== Multistage deployments
 
 The code for the multistage deployment has largely been borrowed from the
 capistrano-ext gem by Jamis Buck. It's been modified here so that it doesn't
