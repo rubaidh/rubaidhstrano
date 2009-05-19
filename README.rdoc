@@ -98,6 +98,11 @@ or to the staging environment:
 
     cap staging deploy
 
+=== New Relic RPM Support
+
+Automatically run New Relic's post-deployment task if it's there. Don't bother
+if it's not.
+
 == Thanks
 
 Some of the code has been borrowed from other sources. The multistage
