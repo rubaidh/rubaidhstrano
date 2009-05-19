@@ -45,5 +45,6 @@ after 'deploy:finalize_update', 'assets:directories:symlink'
 on :load do
   asset_directories.each do |dir|
     depend :remote, :directory, File.join(shared_assets_path, dir)
+    depend :remote, :command, fetch(:tar, "tar")
   end
 end

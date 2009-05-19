@@ -17,3 +17,7 @@ task :replicate, :roles => [ :db ], :only => { :primary => true } do
   end
   run_locally "rake RAILS_ENV=#{target_env} SOURCE_ENV=#{source_env} db:backup:load assets:backup:load"
 end
+
+depend :local, :command, "bzcat"
+depend :local, :command, "tar"
+depend :local, :command, "mysql"

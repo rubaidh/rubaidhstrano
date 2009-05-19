@@ -18,3 +18,5 @@ end
 on :load do
   after_any_deployment "tags:repository" if fetch(:tag_on_deploy, false)
 end
+
+depend :local, :command, "git"
