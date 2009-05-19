@@ -19,7 +19,10 @@ on :load do
   end
 end
 
+# A bunch of features provided by this plugin that I want to enable for most
+# of our applications.
 set :backup_database_before_migrations, true
+set :disable_web_during_migrations,     true
 
 # SSH options
 ssh_options[:forward_agent] = true
