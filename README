@@ -12,6 +12,31 @@ There's a real mish-mash of stuff in here, so let's take it one at a time.
 
 === Database backup and restore
 
+There is a mixture of Capistrano and Rake tasks to allow the database on the
+deployment environment to be backed up, downloaded and restored into another
+environment.
+
+There are a few useful use cases for these tasks.
+
+==== Backing up the database before a migration
+
+In order to automatically back up the production database before a migration,
+insert the following into your capistrano recipe:
+
+    before "db:migrate", "db:backup"
+
+==== Duplicating the production database to your local environment.
+
+You've got a problem in production that you suspect is down to data rather
+than anything else and you'd like to dump the production database to your
+local development environment for further testing. This can be achieved with:
+
+    cap production db:backup
+    rake db:backup:load
+
+Note: this example assumes that you're using multistage deployments for
+staging and production. Please also be aware that this will nuke your current
+development environment's database!
 
 == Thanks
 
