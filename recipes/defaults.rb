@@ -10,9 +10,10 @@ set :deploy_via, :remote_cache
 set :daemon_strategy, :passenger
 set(:user) { application }
 set :use_sudo, false
-role(:app) { host }
-role(:web) { host }
-role(:db)  { host }
+
+role(:app)                  { host }
+role(:web)                  { host }
+role(:db, :primary => true) { host }
 
 # SSH options
 ssh_options[:forward_agent] = true
