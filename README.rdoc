@@ -103,6 +103,20 @@ or to the staging environment:
 Automatically run New Relic's post-deployment task if it's there. Don't bother
 if it's not.
 
+=== Shared assets
+
+Some of our applications have assets that need to be shared across
+deployments. The most common example is if you've been using attachment_fu (or
+some other upload plugin which stores files locally in the filesystem) and you
+want to maintain those uploads between deployments.
+
+In order to share assets between deployments, list the directories needing
+shared as so:
+
+    set :asset_directories, ['public/paintings', 'public/pdfs']
+
+Each directory is relative to +RAILS_ROOT+.
+
 == Thanks
 
 Some of the code has been borrowed from other sources. The multistage
