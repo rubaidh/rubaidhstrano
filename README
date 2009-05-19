@@ -38,6 +38,16 @@ Note: this example assumes that you're using multistage deployments for
 staging and production. Please also be aware that this will nuke your current
 development environment's database!
 
+=== Passenger deployment strategy
+
+We've been through a few deployment strategies over the years -- using
+mongrels managed by Runit or Solaris SMF. Now we're just using Passenger
+inside Apache and life is much easier. :-) If you've also seen the light then
+you can switch Capistrano to use the Passenger deployment strategy with one
+line:
+
+    set :deployment_strategy, :passenger
+
 == Thanks
 
 Some of the code has been borrowed from other sources. Hopefully I've
