@@ -25,6 +25,7 @@ end
 set :backup_database_before_migrations, true
 set :disable_web_during_migrations,     true
 set :build_gems,                        true
+set :tag_on_deploy,                     true
 
 # SSH options
 ssh_options[:forward_agent] = true
