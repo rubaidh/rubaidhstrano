@@ -98,6 +98,16 @@ or to the staging environment:
 
     cap staging deploy
 
+By default, if you set up staging, we assume that you want to deploy from a
+branch named after the stage, and with a rails_env named after the stage. So,
+for example, when you do:
+
+    cap staging deploy
+
+we assume that you want to deploy from the 'staging' branch and that the
+running rails environment will be 'staging' too. You can, of course, change
+this. :)
+
 === New Relic RPM Support
 
 Automatically run New Relic's post-deployment task if it's there. Don't bother
@@ -164,10 +174,25 @@ add the following to your +config/deploy.rb+:
 
     set :build_gems, false
 
+=== Release tagging
+
+Every time a release happens, a tag will be created in your local git
+repository with the release name (which, by default, is of the format
+yyyymmddhhmmss, eg 20090522054102) and pushes that tag out (nothing else,
+though, I hope!).  If you want to disable this behaviour, do:
+
+    set :tag_on_deploy, false
+
+and it'll quit noising up your GitHub feed.
+
 == Thanks
 
 Some of the code has been borrowed from other sources. The multistage
 deployment code was borrowed from the capistrano-ext gem by Jamis Buck.
 Thanks, Jamis! (Oh, and PS, thanks for Capistrano, too!)
+
+Craig Webster's simple_deployment provided inspiration for the asset backup,
+and I'm pretty sure Craig fixed a number of issues in this plugin's previous
+incarnation, +rubaidh_platform+. Thanks, Craig!
 
 Copyright (c) 2009 Rubaidh Ltd, released under the MIT license
