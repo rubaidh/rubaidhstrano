@@ -16,8 +16,8 @@ on :load do
   role(:web)                  { host }
   role(:db, :primary => true) { host }
 
-  set(:branch) { fetch(:stage, 'master') }
-  set(:rails_env) { fetch(:stage, 'production') }
+  set(:branch) { fetch(:stage, 'master').to_s }
+  set(:rails_env) { fetch(:stage, 'production').to_s }
 end
 
 # A bunch of features provided by this plugin that I want to enable for most
