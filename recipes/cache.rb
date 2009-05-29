@@ -8,7 +8,7 @@ namespace :deploy do
         that information, so chances are the easiest thing to do is nuke the
         cached copy and start again.
       TEXT
-      task :remove :except => { :no_release => true } do
+      task :remove, :except => { :no_release => true } do
         cache = strategy.send(:repository_cache)
         run "[ -d #{cache} ] && rm -rf #{cache}"
       end
