@@ -27,6 +27,7 @@ set :disable_web_during_migrations,     true
 set :build_gems,                        true
 set :tag_on_deploy,                     true
 set :cleanup_on_deploy,                 true
+set :compress_assets,                   true
 
 # SSH options
 ssh_options[:forward_agent] = true

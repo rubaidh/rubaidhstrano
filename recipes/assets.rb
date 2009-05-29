@@ -52,4 +52,9 @@ on :load do
     depend :remote, :directory, File.join(shared_assets_path, dir)
     depend :remote, :command, fetch(:tar, "tar")
   end
+
+  if fetch(:compress_assets, false)
+    depend :remote, :command, "java"
+    before 'deploy:finalize_update', 'assets:compress'
+  end
 end
