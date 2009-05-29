@@ -2,6 +2,11 @@ set :asset_directories, []
 set(:shared_assets_path) { File.join(shared_path, 'assets') }
 
 namespace :assets do
+  desc "Compress javascripts and stylesheets"
+  task :compress, :except => { :no_release => true } do
+    rubaidh_run_rake "assets:compress"
+  end
+
   namespace :directories do
     desc "[internal] Create all the shared asset directories"
     task :create, :roles => [ :app, :web ], :except => { :no_release => true } do
