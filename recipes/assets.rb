@@ -11,6 +11,7 @@ namespace :assets do
     desc "[internal] Create all the shared asset directories"
     task :create, :roles => [ :app, :web ], :except => { :no_release => true } do
       run "umask 0002 && mkdir -p #{shared_assets_path}"
+      run "umask 0002 && touch #{File.join(shared_assets_path, ".keep")}"
       asset_directories.each do |dir|
         run "umask 0002 && mkdir -p #{File.join(shared_assets_path, dir)}"
       end
