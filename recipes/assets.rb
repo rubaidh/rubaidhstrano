@@ -10,8 +10,6 @@ namespace :assets do
   namespace :directories do
     desc "[internal] Create all the shared asset directories"
     task :create, :roles => [ :app, :web ], :except => { :no_release => true } do
-      run "umask 0002 && mkdir -p #{shared_assets_path}"
-      run "umask 0002 && touch #{File.join(shared_assets_path, ".keep")}"
       asset_directories.each do |dir|
         run "umask 0002 && mkdir -p #{File.join(shared_assets_path, dir)}"
       end
@@ -33,15 +31,17 @@ namespace :assets do
     tar = fetch(:tar, "tar")
     rails_env = fetch(:rails_env, "production")
 
-    run "cd #{shared_assets_path} && #{tar} cjf #{rails_env}-assets.tar.bz2 #{asset_directories.join(" ")}"
+    run "if -d [ #{shared_assets_path}; then cd #{shared_assets_path} && #{tar} cjf #{rails_env}-assets.tar.bz2 #{asset_directories.join(" ")}; fi"
   end
 
   task :download, :roles => [ :app, :web ], :except => { :no_release => true } do
-    backup
+    unless asset_directories.empty?
+      backup
 
-    rails_env = fetch(:rails_env, "production")
+      rails_env = fetch(:rails_env, "production")
 
-    get "#{shared_assets_path}/#{rails_env}-assets.tar.bz2", "#{rails_env}-assets.tar.bz2"
+      get "#{shared_assets_path}/#{rails_env}-assets.tar.bz2", "#{rails_env}-assets.tar.bz2"
+    end
   end
 end
 

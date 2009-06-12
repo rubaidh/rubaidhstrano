@@ -12,10 +12,14 @@ task :replicate, :roles => [ :db ], :only => { :primary => true } do
   find_and_execute_task("db:download")
   find_and_execute_task("assets:download")
 
-  asset_directories.each do |dir|
-    run_locally "rm -rf #{dir}"
+  run_locally "rake RAILS_ENV=#{target_env} SOURCE_ENV=#{source_env} db:backup:load"
+
+  unless asset_directories.empty?
+    asset_directories.each do |dir|
+      run_locally "rm -rf #{dir}"
+    end
+    run_locally "rake RAILS_ENV=#{target_env} SOURCE_ENV=#{source_env} assets:backup:load"
   end
-  run_locally "rake RAILS_ENV=#{target_env} SOURCE_ENV=#{source_env} db:backup:load assets:backup:load"
 end
 
 depend :local, :command, "bzcat"
