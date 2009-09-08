@@ -8,7 +8,7 @@ set :deploy_via, :remote_cache
 
 # Deployment configuration
 set :daemon_strategy, :passenger
-set(:user) { application }
+set(:user) { application.gsub('_', '') }
 set :use_sudo, false
 
 on :load do
